@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Ecommerce | Demo</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Demo real con JB Framework</p>
+      <h1>Ecommerce Mini</h1>
+      <p class="subtitle">Catalogo, carrito y checkout conectados a apiEcommerce.</p>
+      <nav class="main-nav" id="mainNav">
+        <button class="nav-btn active" data-view="tienda">Tienda</button>
+        <button class="nav-btn" data-view="catalogos">Catalogos</button>
+        <button class="nav-btn" data-view="pedidos">Pedidos</button>
+      </nav>
+    </div>
+    <div class="api-config">
+      <label for="apiBase">API Base</label>
+      <input id="apiBase" type="text" value="http://localhost/ecommerce/apiEcommerce/public/api" />
+      <button id="saveApiBase">Guardar</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="viewTienda" class="view-section">
+      <div class="layout">
+        <section class="catalog">
+          <div class="catalog-toolbar">
+            <input id="searchInput" type="search" placeholder="Buscar producto..." />
+            <select id="categoryFilter">
+              <option value="">Todas las categorias</option>
+            </select>
+            <select id="productSort">
+              <option value="nombre:asc">Nombre A-Z</option>
+              <option value="nombre:desc">Nombre Z-A</option>
+              <option value="precio_centavos:asc">Precio menor-mayor</option>
+              <option value="precio_centavos:desc">Precio mayor-menor</option>
+              <option value="stock:desc">Stock mayor-menor</option>
+            </select>
+            <select id="storePageSize">
+              <option value="8" selected>8 por pagina</option>
+              <option value="12">12 por pagina</option>
+              <option value="16">16 por pagina</option>
+            </select>
+            <button id="refreshBtn">Actualizar</button>
+          </div>
+          <div id="productGrid" class="product-grid"></div>
+          <div class="pager-controls">
+            <button id="storePrevPage" class="secondary">Anterior</button>
+            <span id="storePageInfo">Pagina 1 de 1</span>
+            <button id="storeNextPage" class="secondary">Siguiente</button>
+          </div>
+        </section>
+
+        <aside class="cart-panel">
+          <h2>Carrito</h2>
+          <div id="cartItems" class="cart-items"></div>
+          <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">$0.00</strong>
+          </div>
+          <button id="clearCart" class="secondary">Vaciar carrito</button>
+
+          <hr />
+
+          <h3>Checkout</h3>
+          <form id="checkoutForm">
+            <label>Nombre completo
+              <input name="nombre" required />
+            </label>
+            <label>Email
+              <input name="email" type="email" required />
+            </label>
+            <label>Telefono
+              <input name="telefono" />
+            </label>
+            <label>Direccion
+              <textarea name="direccion" rows="3"></textarea>
+            </label>
+            <button type="submit">Crear pedido</button>
+          </form>
+
+          <div id="orderResult" class="order-result"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="viewCatalogos" class="view-section hidden">
+      <section class="panel wide">
+        <h2>Catalogos de tablas</h2>
+        <p class="subtitle-panel">Consulta rapida de datos en tablas expuestas por la API.</p>
+        <div class="catalog-table-toolbar">
+          <select id="tableSelect">
+            <option value="categories">categories</option>
+            <option value="products">products</option>
+            <option value="customers">customers</option>
+            <option value="orders">orders</option>
+            <option value="order_items">order_items</option>
+          </select>
+          <button id="loadTableBtn">Cargar tabla</button>
+        </div>
+
+        <div class="catalog-grid">
+          <section class="panel panel-soft">
+            <h3>Listado (READ) con paginacion</h3>
+            <div class="catalog-controls">
+              <input id="catalogSearch" type="search" placeholder="Filtrar en tabla actual..." />
+              <select id="catalogSortField">
+                <option value="">Ordenar por...</option>
+              </select>
+              <select id="catalogSortDir">
+                <option value="asc">Asc</option>
+                <option value="desc">Desc</option>
+              </select>
+              <select id="catalogPageSize">
+                <option value="10" selected>10 por pagina</option>
+                <option value="20">20 por pagina</option>
+                <option value="50">50 por pagina</option>
+              </select>
+            </div>
+            <div id="catalogTableContainer" class="table-wrap"></div>
+            <div class="pager-controls">
+              <button id="catalogPrevPage" class="secondary">Anterior</button>
+              <span id="catalogPageInfo">Pagina 1 de 1</span>
+              <button id="catalogNextPage" class="secondary">Siguiente</button>
+            </div>
+          </section>
+
+          <section class="panel panel-soft">
+            <h3>CRUD de catalogos</h3>
+
+            <form id="catalogReadForm" class="stack-form">
+              <label>ID para leer (GET /{tabla}/{id})
+                <input id="catalogReadId" type="number" min="1" />
+              </label>
+              <button type="submit">Consultar por ID</button>
+            </form>
+
+            <form id="catalogCreateForm" class="stack-form">
+              <label>Crear (POST /{tabla}) JSON
+                <textarea id="catalogCreateJson" rows="6" spellcheck="false"></textarea>
+              </label>
+              <button type="submit">Crear registro</button>
+            </form>
+
+            <form id="catalogUpdateForm" class="stack-form">
+              <label>ID para actualizar (PUT /{tabla}/{id})
+                <input id="catalogUpdateId" type="number" min="1" />
+              </label>
+              <label>Actualizar JSON
+                <textarea id="catalogUpdateJson" rows="6" spellcheck="false"></textarea>
+              </label>
+              <button type="submit">Actualizar registro</button>
+            </form>
+
+            <form id="catalogDeleteForm" class="stack-form">
+              <label>ID para eliminar (DELETE /{tabla}/{id})
+                <input id="catalogDeleteId" type="number" min="1" />
+              </label>
+              <button type="submit" class="danger">Eliminar registro</button>
+            </form>
+
+            <div id="catalogCrudResult" class="order-result"></div>
+            <pre id="catalogRecordPreview" class="code-preview">Selecciona una fila o consulta por ID para ver detalle.</pre>
+          </section>
+        </div>
+      </section>
+    </section>
+
+    <section id="viewPedidos" class="view-section hidden">
+      <div class="orders-layout">
+        <section class="panel">
+          <div class="orders-toolbar">
+            <h2>Pedidos</h2>
+            <button id="refreshOrdersBtn">Actualizar pedidos</button>
+          </div>
+
+          <div class="orders-filters">
+            <select id="orderStatusFilter">
+              <option value="">Estado: todos</option>
+              <option value="created">created</option>
+              <option value="paid">paid</option>
+              <option value="shipped">shipped</option>
+              <option value="cancelled">cancelled</option>
+            </select>
+            <select id="orderSortField">
+              <option value="id">Orden: ID</option>
+              <option value="created_at">Orden: fecha</option>
+              <option value="total_centavos">Orden: total</option>
+              <option value="customer_nombre">Orden: cliente</option>
+              <option value="status">Orden: status</option>
+            </select>
+            <select id="orderSortDir">
+              <option value="desc">Desc</option>
+              <option value="asc">Asc</option>
+            </select>
+            <input id="orderCustomerFilter" type="search" placeholder="Cliente o email..." />
+            <input id="orderMinTotal" type="number" min="0" placeholder="Total min (centavos)" />
+            <input id="orderMaxTotal" type="number" min="0" placeholder="Total max (centavos)" />
+            <input id="orderDateFrom" type="date" />
+            <input id="orderDateTo" type="date" />
+            <button id="applyOrderFilters" class="secondary">Aplicar filtros</button>
+            <button id="resetOrderFilters" class="secondary">Limpiar</button>
+          </div>
+
+          <div id="ordersList" class="table-wrap"></div>
+          <div class="pager-controls">
+            <button id="ordersPrevPage" class="secondary">Anterior</button>
+            <span id="ordersPageInfo">Pagina 1 de 1</span>
+            <button id="ordersNextPage" class="secondary">Siguiente</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Operaciones de pedidos</h3>
+          <form id="createOrderForm" class="stack-form">
+            <label>Crear pedido (POST /orders) - JSON
+              <textarea id="createOrderJson" rows="8" spellcheck="false"></textarea>
+            </label>
+            <button type="submit">Crear pedido por JSON</button>
+          </form>
+
+          <form id="updateOrderForm" class="stack-form">
+            <label>ID pedido
+              <input id="updateOrderId" type="number" min="1" required />
+            </label>
+            <label>Nuevo estado
+              <select id="updateOrderStatus">
+                <option value="created">created</option>
+                <option value="paid">paid</option>
+                <option value="shipped">shipped</option>
+                <option value="cancelled">cancelled</option>
+              </select>
+            </label>
+            <button type="submit">Actualizar estado (PUT)</button>
+          </form>
+
+          <form id="deleteOrderForm" class="stack-form">
+            <label>ID pedido
+              <input id="deleteOrderId" type="number" min="1" required />
+            </label>
+            <button type="submit" class="danger">Eliminar pedido (DELETE)</button>
+          </form>
+
+          <div id="ordersOperationResult" class="order-result"></div>
+        </section>
+
+        <section class="panel wide">
+          <h3>Detalle de pedido (GET /orders/{id})</h3>
+          <div id="orderDetail" class="order-detail-empty">Selecciona un pedido para ver el detalle.</div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
