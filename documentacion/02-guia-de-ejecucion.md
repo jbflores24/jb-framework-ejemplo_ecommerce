@@ -5,17 +5,29 @@
 - PHP 8.2+
 - Composer
 - WAMP/Apache o servidor local
+- Extension `pdo_sqlite` de PHP
+
+## Obtener el proyecto
+
+Clona el repositorio con el nombre `ecommerce` dentro de la carpeta web (`htdocs` en XAMPP, `www` en WAMP):
+
+```bash
+git clone https://github.com/jbflores24/jb-framework-ejemplo_ecommerce.git ecommerce
+```
+
+Si usas otro nombre, ajusta `APP_URL` y `APP_BASE_ROUTE` en `apiEcommerce/.env` y el campo `API Base` del frontend.
 
 ## Backend (apiEcommerce)
 
 Ruta:
 
-- `c:/wamp64/www/ecommerce/apiEcommerce`
+- `<carpeta web>/ecommerce/apiEcommerce`
 
 Pasos:
 
 ```bash
 composer install --no-dev
+cp .env.example .env   # en Windows (cmd): copy .env.example .env
 php jb migrate:fresh
 php jb seed ZEcommerceSeeder
 php jb seed ZDemoOrdersSeeder
@@ -31,7 +43,7 @@ Healthcheck:
 
 Ruta:
 
-- `c:/wamp64/www/ecommerce/appEcommerce`
+- `<carpeta web>/ecommerce/appEcommerce`
 
 Abre `index.html` en navegador.
 

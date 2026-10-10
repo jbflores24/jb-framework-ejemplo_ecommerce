@@ -18,11 +18,22 @@ Proyecto completo de demostracion construido sobre JB Framework, con backend RES
 
 ## Inicio rapido
 
+### 0. Obtener el proyecto
+
+Clona el repositorio **con el nombre `ecommerce`** dentro de la carpeta web de tu servidor local (`htdocs` en XAMPP, `www` en WAMP). Las URLs por defecto de la API y del frontend asumen ese nombre:
+
+```bash
+git clone https://github.com/jbflores24/jb-framework-ejemplo_ecommerce.git ecommerce
+```
+
+Si usas otro nombre de carpeta, ajusta `APP_URL` y `APP_BASE_ROUTE` en `apiEcommerce/.env` y el campo `API Base` del frontend.
+
 ### 1. API
 
 ```bash
 cd apiEcommerce
 composer install --no-dev
+cp .env.example .env   # en Windows (cmd): copy .env.example .env
 php jb migrate:fresh
 php jb seed ZEcommerceSeeder
 php jb seed ZDemoOrdersSeeder
@@ -52,6 +63,7 @@ Por defecto consume:
 
 ## Notas
 
-- El proyecto esta pensado para correr en Windows + WAMP.
+- Probado en Windows con WAMP y con XAMPP (PHP 8.2+, extension `pdo_sqlite`).
+- JB Framework se instala desde su repositorio publico con Composer: no hace falta tenerlo clonado aparte.
 - Los montos monetarios se manejan en centavos para evitar problemas de precision.
 - El checkout descuenta stock de forma atomica.
