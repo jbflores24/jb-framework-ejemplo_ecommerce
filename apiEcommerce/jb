@@ -4,4 +4,4 @@
 declare(strict_types=1);
 
 chdir(__DIR__);
-require 'C:/wamp64/www/jb/bin/jb';
+require __DIR__ . '/vendor/jb/framework/bin/jb';
