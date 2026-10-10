@@ -1,6 +1,6 @@
 # Ecommerce - Resumen Ejecutivo
 
-Se creo una solucion en `c:/wamp64/www/ecommerce` con tres componentes:
+Se creo una solucion en la carpeta `ecommerce` del servidor web local con tres componentes:
 
 - `apiEcommerce`: backend REST sobre JB Framework.
 - `appEcommerce`: frontend web que consume la API.

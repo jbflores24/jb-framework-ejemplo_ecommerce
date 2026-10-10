@@ -84,13 +84,21 @@ Payload ejemplo:
 composer install --no-dev
 ```
 
-2. Crear esquema:
+2. Crear la configuracion local (usa SQLite en `storage/ecommerce.sqlite`):
+
+```bash
+cp .env.example .env   # en Windows (cmd): copy .env.example .env
+```
+
+Sin `.env` el framework intenta conectarse a MySQL y la migracion falla.
+
+3. Crear esquema:
 
 ```bash
 php jb migrate:fresh
 ```
 
-3. Cargar datos demo:
+4. Cargar datos demo:
 
 ```bash
 php jb seed ZEcommerceSeeder
@@ -98,19 +106,19 @@ php jb seed ZDemoOrdersSeeder
 php jb seed ZBulkProductsSeeder
 ```
 
-4. Generar OpenAPI basico:
+5. Generar OpenAPI basico:
 
 ```bash
 php jb docs:generate
 ```
 
-5. Servir API (opcion CLI):
+6. Servir API (opcion CLI):
 
 ```bash
 php jb serve
 ```
 
-En WAMP tambien puedes usar directamente:
+En WAMP o XAMPP tambien puedes usar directamente (con el proyecto en la carpeta `ecommerce`):
 
 - `http://localhost/ecommerce/apiEcommerce/public/api/health`
 

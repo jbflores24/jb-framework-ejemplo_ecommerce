@@ -4,7 +4,7 @@ Este documento describe exactamente como se utilizo JB Framework en el backend.
 
 ## 1. Generacion base del proyecto
 
-Desde el repo del framework (`c:/wamp64/www/jb`) se ejecuto:
+Desde el repositorio del framework (`jb-framework`) se ejecuto:
 
 ```bash
 php bin/jb new ..\ecommerce\apiEcommerce

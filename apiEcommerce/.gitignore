@@ -3,3 +3,4 @@
 /storage/logs/*
 /storage/cache/*
 /storage/rate_limit/*
+/.phpunit.result.cache
