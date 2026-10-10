@@ -4,4 +4,4 @@
 declare(strict_types=1);
 
 chdir(__DIR__);
-require __DIR__ . '/vendor/jb/framework/bin/jb';
+require __DIR__ . '/vendor/jbflores24/framework/bin/jb';
