@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26c396a38898ae92f308e3289c20cc42",
+    "content-hash": "129fd3f398e9371c43b6cc386c4152ce",
     "packages": [
         {
-            "name": "jb/framework",
-            "version": "dev-main",
+            "name": "jbflores24/framework",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jbflores24/jb-framework.git",
-                "reference": "921e4eaabb1fb1e34df1bcf248f549832ec8ebf3"
+                "reference": "77865b462a6e6bee72ca4c86e0007485d0be160a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jbflores24/jb-framework/zipball/921e4eaabb1fb1e34df1bcf248f549832ec8ebf3",
-                "reference": "921e4eaabb1fb1e34df1bcf248f549832ec8ebf3",
+                "url": "https://api.github.com/repos/jbflores24/jb-framework/zipball/77865b462a6e6bee72ca4c86e0007485d0be160a",
+                "reference": "77865b462a6e6bee72ca4c86e0007485d0be160a",
                 "shasum": ""
             },
             "require": {
@@ -27,7 +27,6 @@
             "require-dev": {
                 "phpunit/phpunit": "^11.0"
             },
-            "default-branch": true,
             "bin": [
                 "bin/jb"
             ],
@@ -42,41 +41,24 @@
                     "/docs/"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Jb\\Tests\\": "tests/"
-                }
-            },
-            "archive": {
-                "exclude": [
-                    "/.github/",
-                    "/.phpunit.cache/",
-                    "/examples/",
-                    "/tests/",
-                    "/arbol.txt",
-                    "/test.txt"
-                ]
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ],
-                "test-unit": [
-                    "phpunit --testsuite Unit"
-                ],
-                "test-integration": [
-                    "phpunit --testsuite Integration"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Miniframework PHP 8.2 para APIs REST.",
+            "homepage": "https://github.com/jbflores24/jb-framework",
+            "keywords": [
+                "api",
+                "framework",
+                "microframework",
+                "php",
+                "rest"
+            ],
             "support": {
-                "source": "https://github.com/jbflores24/jb-framework/tree/main",
-                "issues": "https://github.com/jbflores24/jb-framework/issues"
+                "issues": "https://github.com/jbflores24/jb-framework/issues",
+                "source": "https://github.com/jbflores24/jb-framework/tree/v1.0.0"
             },
-            "time": "2026-08-15T23:44:45+00:00"
+            "time": "2026-10-10T03:00:12+00:00"
         }
     ],
     "packages-dev": [
@@ -1863,11 +1845,9 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "jb/framework": 20
-    },
-    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2"
